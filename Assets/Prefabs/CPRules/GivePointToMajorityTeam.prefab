@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1273271226348947697}
   - component: {fileID: 1273271226348947696}
   - component: {fileID: 1273271226348947695}
+  - component: {fileID: 2206812724235921426}
   - component: {fileID: 1273271226348947694}
   m_Layer: 0
   m_Name: GivePointToMajorityTeam
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 1273271226348947696}
   idSource: {fileID: 1273271226348947697}
+--- !u!114 &2206812724235921426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273271226348947692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f26369e7cb2e44d6837dd0ebc6943c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1273271226348947694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc040d2650484016845dfec3065db44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: {fileID: 2206812724235921426}
   winningTeamAggregator: {fileID: 1273271226348947695}
   capturePoint: {fileID: 0}
   settings:

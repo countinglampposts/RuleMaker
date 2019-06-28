@@ -13,18 +13,22 @@ namespace Rulemaker
             public bool returnToNeutral;
         }
 
+        [SerializeField] TriggerBase trigger;
         [SerializeField] TeamAggregator winningTeamAggregator;
         [SerializeField] CapturePoint capturePoint;
 
         [SerializeField] Settings settings;
 
-        private void Update()
+        private void Start()
         {
-            var winningTeam = winningTeamAggregator.Aggregate();
-            if (winningTeam.Any())
-                capturePoint.SetWinner(winningTeam.First());
-            else if (settings.returnToNeutral)
-                capturePoint.SetNeutral();
+            trigger.AddListener(() =>
+            {
+                var winningTeam = winningTeamAggregator.Aggregate();
+                if (winningTeam.Any())
+                    capturePoint.SetWinner(winningTeam.First());
+                else if (settings.returnToNeutral)
+                    capturePoint.SetNeutral();
+            });
         }
     }
 }
