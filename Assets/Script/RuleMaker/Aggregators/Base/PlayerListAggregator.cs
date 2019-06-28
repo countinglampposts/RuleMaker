@@ -15,8 +15,13 @@ namespace Rulemaker
         public Vector3 postion;
     }
 
-    public abstract class PlayerListAggregator : MonoBehaviour
+    public abstract class PlayerListAggregator : MonoBehaviour, IAggregator
     {
+        public object AggregateObject()
+        {
+            return Aggregate();
+        }
+
         public abstract IEnumerable<PlayerData> Aggregate();
     }
 }

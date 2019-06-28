@@ -11,8 +11,13 @@ namespace Rulemaker
         public Color teamColor;
     }
 
-    public abstract class TeamAggregator : MonoBehaviour
+    public abstract class TeamAggregator : MonoBehaviour, IAggregator
     {
+        public object AggregateObject()
+        {
+            return Aggregate();
+        }
+
         public abstract IEnumerable<TeamData> Aggregate();
     }
 }
