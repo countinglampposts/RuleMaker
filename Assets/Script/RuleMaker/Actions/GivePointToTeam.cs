@@ -7,27 +7,26 @@ namespace Rulemaker
 {
     public class GivePointToTeam : MonoBehaviour
     {
-        [System.Serializable]
-        class Settings
-        {
-            public bool returnToNeutral;
-        }
-
         [SerializeField] TriggerBase trigger;
-        [SerializeField] TeamAggregator winningTeamAggregator;
+        [SerializeField] IntAggregator winningTeamIdAggregator;
         [SerializeField] CapturePoint capturePoint;
-
-        [SerializeField] Settings settings;
 
         private void Start()
         {
             trigger.AddListener(() =>
             {
-                var winningTeam = winningTeamAggregator.Aggregate();
-                if (winningTeam.Any())
-                    capturePoint.SetWinner(winningTeam.First());
-                else if (settings.returnToNeutral)
+                var winningTeamId = winningTeamIdAggregator.Aggregate();
+
+                if (winningTeamId >= 0)
+                {
+                    var winningTeamData = RulemakerUtils.GetAllTeams()
+                        .First(team => team.teamId == winningTeamId);
+                    capturePoint.SetWinner(winningTeamData);
+                }
+                else if (winningTeamId == MajorityTeamId.ContestedId)
+                {
                     capturePoint.SetNeutral();
+                }
             });
         }
     }

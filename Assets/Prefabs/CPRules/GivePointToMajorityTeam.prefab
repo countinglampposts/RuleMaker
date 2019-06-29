@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1273271226348947699}
   - component: {fileID: 1273271226348947698}
   - component: {fileID: 1273271226348947697}
-  - component: {fileID: 1273271226348947696}
-  - component: {fileID: 1273271226348947695}
   - component: {fileID: 6707294987117605861}
   - component: {fileID: 2689305412488945886}
   - component: {fileID: 1273271226348947694}
@@ -78,32 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1273271226348947698}
---- !u!114 &1273271226348947696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db3b0730666f440992658e65ad669ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1273271226348947695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 772e8a50f61d948908ee7bca47700ffb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1273271226348947696}
-  idSource: {fileID: 1273271226348947697}
 --- !u!114 &6707294987117605861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 2689305412488945886}
-  winningTeamAggregator: {fileID: 1273271226348947695}
+  winningTeamIdAggregator: {fileID: 1273271226348947697}
   capturePoint: {fileID: 0}
   settings:
-    returnToNeutral: 1
+    returnToNeutral: 0

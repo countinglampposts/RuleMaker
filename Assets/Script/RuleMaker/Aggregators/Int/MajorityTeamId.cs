@@ -8,6 +8,9 @@ namespace Rulemaker
 {
     public class MajorityTeamId : IntAggregator
     {
+        public const int UnclaimedId = -1;
+        public const int ContestedId = -2;
+
         public PlayerListAggregator source;
 
         public override int Aggregate()
@@ -21,7 +24,7 @@ namespace Rulemaker
                 .Select(player => player.teamId)
                 .Distinct();
 
-            int winningTeam = -1;
+            int winningTeam = UnclaimedId;
             int winningCount = -1;
 
             foreach (var team in teams)
@@ -35,7 +38,7 @@ namespace Rulemaker
                 }
                 else if (teamCount == winningCount)
                 {
-                    winningTeam = -1;
+                    winningTeam = ContestedId;
                     winningCount = teamCount;
                 }
             }
