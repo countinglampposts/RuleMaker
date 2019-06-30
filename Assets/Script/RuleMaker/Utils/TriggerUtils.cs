@@ -43,13 +43,11 @@ namespace Rulemaker
 
             trigger.AddListener(data =>
             {
-                Debug.Log("Timer Triggered!");
                 if (disposable != null)
                     disposable.Dispose();
 
                 disposable = StartCoroutine(TimerCoroutine(() =>
                 {
-                    Debug.Log(returned.action);
                     returned.action(data);
                 }, timerParams));
             });
@@ -61,7 +59,6 @@ namespace Rulemaker
         {
             var returned = new Trigger<T>();
 
-            Debug.Log("Adding listener!");
             trigger.AddListener(action);
             trigger.AddListener(returned.action);
 
