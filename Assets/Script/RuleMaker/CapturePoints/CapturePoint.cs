@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Rulemaker
@@ -8,14 +9,17 @@ namespace Rulemaker
     {
         [SerializeField] Renderer renderer;
 
-        public void SetWinner(TeamData teamData)
-        {
-            renderer.material.color = teamData.teamColor;
-        }
+        public const int UnclaimedId = -1;
+        public const int ContestedId = -2;
 
-        public void SetNeutral()
+        public void SetWinningTeamId(int teamId)
         {
-            renderer.material.color = Color.white;
+            if (teamId > 0)
+                renderer.material.color = TeamUtils.GetAllTeams().GetData()
+                    .First(team => team.teamId == teamId).teamColor;
+            else if (teamId == ContestedId)
+                renderer.material.color = Color.white;
+
         }
     }
 }

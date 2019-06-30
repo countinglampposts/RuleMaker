@@ -178,6 +178,11 @@ PrefabInstance:
       propertyPath: capturePoint
       value: 
       objectReference: {fileID: 1894131382573044218}
+    - target: {fileID: 2146264588745245681, guid: 6febccecea57c475ea8a4bee63147afa,
+        type: 3}
+      propertyPath: capturePoint
+      value: 
+      objectReference: {fileID: 1894131382573044218}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6febccecea57c475ea8a4bee63147afa, type: 3}
 --- !u!4 &1894131380664383772 stripped

@@ -5,6 +5,17 @@ using UnityEngine;
 
 namespace Rulemaker
 {
+    [System.Serializable]
+    public class PlayerData
+    {
+        public int teamId;
+
+        [HideInInspector]
+        public string id;
+        [HideInInspector]
+        public Vector3 postion;
+    }
+
     public class Player : MonoBehaviour
     {
         [SerializeField] Renderer renderer;
@@ -17,7 +28,7 @@ namespace Rulemaker
 
         private void Start()
         {
-            var teamColor = RulemakerUtils.GetAllTeams()
+            var teamColor = TeamUtils.GetAllTeams().GetData()
                 .First(team => team.teamId == playerData.teamId).teamColor;
 
             renderer.material.color = teamColor;

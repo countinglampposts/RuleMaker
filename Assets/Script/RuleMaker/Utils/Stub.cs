@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Rulemaker
 {
-    public interface IAggregator
+    public class Stub : MonoBehaviour
     {
-        object AggregateObject();
     }
 }

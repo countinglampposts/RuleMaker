@@ -9,12 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1273271226348947693}
-  - component: {fileID: 1273271226348947699}
-  - component: {fileID: 1273271226348947698}
-  - component: {fileID: 1273271226348947697}
-  - component: {fileID: 6707294987117605861}
-  - component: {fileID: 2689305412488945886}
-  - component: {fileID: 1273271226348947694}
+  - component: {fileID: 2146264588745245681}
   m_Layer: 0
   m_Name: GivePointToMajorityTeam
   m_TagString: Untagged
@@ -36,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1273271226348947699
+--- !u!114 &2146264588745245681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,79 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1273271226348947692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabce0a9be39b4815a9356c81462103c, type: 3}
+  m_Script: {fileID: 11500000, guid: ec2ffc9a65108451ebcbacab399226de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1273271226348947698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2b6becd967a4da9bf9a796684d988a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings:
-    distance: 5
-  source: {fileID: 1273271226348947699}
---- !u!114 &1273271226348947697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc168808640e4267a22e2debe1fdf0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1273271226348947698}
---- !u!114 &6707294987117605861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9b7187b9f5c34c07a735242b688dbd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aggregator: {fileID: 1273271226348947697}
---- !u!114 &2689305412488945886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12b8d9fa715e34a67ba00dd640948b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: {fileID: 6707294987117605861}
-  settings:
-    time: 3
---- !u!114 &1273271226348947694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273271226348947692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc040d2650484016845dfec3065db44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: {fileID: 2689305412488945886}
-  winningTeamIdAggregator: {fileID: 1273271226348947697}
+  radiusParams:
+    radius: 10
+    transform: {fileID: 1273271226348947693}
+  timerParams:
+    waitTime: 3
   capturePoint: {fileID: 0}
-  settings:
-    returnToNeutral: 0
