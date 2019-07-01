@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Rulemaker
 {
     [System.Serializable]
-    public class PlayerData
+    public class PlayerData : ITeamOwned
     {
         public int teamId;
 
@@ -14,6 +14,13 @@ namespace Rulemaker
         public string id;
         [HideInInspector]
         public Vector3 postion;
+
+        public Dictionary<string, object> data;
+
+        public int GetTeamId()
+        {
+            return teamId;
+        }
     }
 
     public class Player : MonoBehaviour

@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rulemaker
+namespace Rulemaker.Example
 {
-    public class Test : MonoBehaviour
+    public class CaptureWithTime : MonoBehaviour
     {
         [SerializeField] RadiusParams radiusParams;
         [SerializeField] TimerParams timerParams;
         [SerializeField] CapturePoint capturePoint;
+
         void Start()
         {
             PlayerUtils.GetAllPlayers()
                 .PlayersWithinRadius(radiusParams)
                 .MajorityTeamId()
-                .DataChanged()
-                .Timer(timerParams)
-                .Do(capturePoint.SetWinningTeamId);
+                .OnDataChanged()
+                .OnTimer(timerParams)
+                .OnDo(capturePoint.SetWinningTeamId);
         }
     }
 }

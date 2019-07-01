@@ -12,11 +12,11 @@ namespace Rulemaker
 
     public class Trigger<T> : ITrigger<T>
     {
-        public Action<T> action = data => { };
+        public Action<T> trigger = data => { };
 
         public void AddListener(Action<T> action)
         {
-            this.action += action;
+            this.trigger += action;
         }
     }
 }

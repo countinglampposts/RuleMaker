@@ -9,6 +9,8 @@ namespace Rulemaker
     {
         public int teamId;
         public Color teamColor;
+
+        public DataCollection dataCollection = new DataCollection();
     }
 
     public class Team : MonoBehaviour

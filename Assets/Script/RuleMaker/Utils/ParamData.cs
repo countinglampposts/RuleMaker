@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct RadiusParams
+namespace Rulemaker
 {
-    public float radius;
-    public Transform transform;
-}
+    [System.Serializable]
+    public class RadiusParams
+    {
+        public float radius;
+        public Transform transform;
+    }
 
-[System.Serializable]
-public struct TimerParams
-{
-    public float waitTime;
-}
+    [System.Serializable]
+    public class TimerParams
+    {
+        public float waitTime;
+        public bool repeat;
+    }
 
+}

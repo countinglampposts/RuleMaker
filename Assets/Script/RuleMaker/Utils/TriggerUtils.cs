@@ -17,7 +17,30 @@ namespace Rulemaker
             }
         }
 
-        public static ITrigger<T> DataChanged<T>(this IAggregator<T> aggregator)
+        public static ITrigger<T> OnDataChanged<T, I>(this IAggregator<T> aggregator, Func<T, I> select)
+        {
+            var previousData = select(aggregator.GetData());
+
+            var returned = new Trigger<T>();
+
+            StartCoroutine(EveryUpdate(() =>
+            {
+                var originalCurrentData = aggregator.GetData();
+                var currentData = select(originalCurrentData);
+
+                if ((currentData == null && previousData == null) || !currentData.Equals(previousData))
+                {
+                    returned.trigger(originalCurrentData);
+                }
+
+                previousData = currentData;
+            }));
+
+            return returned;
+        }
+
+        // TODO: find a way to do a valueEquals check
+        public static ITrigger<T> OnDataChanged<T>(this IAggregator<T> aggregator)
         {
             var previousData = aggregator.GetData();
 
@@ -26,17 +49,19 @@ namespace Rulemaker
             StartCoroutine(EveryUpdate(() =>
             {
                 var currentData = aggregator.GetData();
-                if (!currentData.Equals(previousData))
+
+                if ((currentData == null && previousData == null) || (currentData != null && !currentData.Equals(previousData)))
                 {
-                    returned.action(currentData);
-                    previousData = currentData;
+                    returned.trigger(currentData);
                 }
+
+                previousData = currentData;
             }));
 
             return returned;
         }
 
-        public static ITrigger<T> Timer<T>(this ITrigger<T> trigger, TimerParams timerParams)
+        public static ITrigger<T> OnTimer<T>(this ITrigger<T> trigger, TimerParams timerParams)
         {
             var returned = new Trigger<T>();
             IDisposable disposable = null;
@@ -46,21 +71,30 @@ namespace Rulemaker
                 if (disposable != null)
                     disposable.Dispose();
 
-                disposable = StartCoroutine(TimerCoroutine(() =>
+                Action startTimer = null;
+
+                startTimer = () =>
                 {
-                    returned.action(data);
-                }, timerParams));
+                    disposable = StartCoroutine(TimerCoroutine(() =>
+                    {
+                        returned.trigger(data);
+                        if (timerParams.repeat)
+                            startTimer();
+                    }, timerParams));
+                };
+
+                startTimer();
             });
 
             return returned;
         }
 
-        public static ITrigger<T> Do<T>(this ITrigger<T> trigger, Action<T> action)
+        public static ITrigger<T> OnDo<T>(this ITrigger<T> trigger, Action<T> action)
         {
             var returned = new Trigger<T>();
 
             trigger.AddListener(action);
-            trigger.AddListener(returned.action);
+            trigger.AddListener(returned.trigger);
 
             return returned;
         }
