@@ -39,7 +39,8 @@ namespace Rulemaker
 
         public T GetData<T>(string key)
         {
-            return (T)GetData(key);
+            Initialize();
+            return (dictionary.ContainsKey(key)) ? (T)dictionary[key] : default;
         }
 
         public void SetData<T>(string key, T data)
