@@ -75,7 +75,7 @@ namespace Rulemaker
             else
                 color = Color.white;
 
-            float colorMultiplier = (isLocked) ? .75f : 1f;
+            float colorMultiplier = (isLocked) ? .5f : 1f;
             renderer.material.color = new Color(color.r * colorMultiplier, color.g * colorMultiplier, color.b * colorMultiplier);
         }
     }
