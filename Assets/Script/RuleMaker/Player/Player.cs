@@ -6,14 +6,18 @@ using UnityEngine;
 namespace Rulemaker
 {
     [System.Serializable]
-    public class PlayerData : ITeamOwned
+    public class PlayerData : ITeamOwned, IPositoned
     {
         public int teamId;
-
         [HideInInspector]
         public Vector3 postion;
 
         public DataCollection dataCollection = new DataCollection();
+
+        public Vector3 GetPosition()
+        {
+            return postion;
+        }
 
         public int GetTeamId()
         {
@@ -21,6 +25,9 @@ namespace Rulemaker
         }
     }
 
+    /// <summary>
+    /// This is used to track the player. It should be attached to the player.
+    /// </summary>
     public class Player : MonoBehaviour
     {
         [SerializeField] Renderer renderer;

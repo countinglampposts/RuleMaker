@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     winningScore: 10
-    scoreDropRate: 1
+    scoreGainRate: 1
 --- !u!4 &2060940817
 Transform:
   m_ObjectHideFlags: 0

@@ -52,6 +52,8 @@ MonoBehaviour:
   capturePointData:
     teamId: 0
     lockedTeams: 0100000002000000
+    dataCollection:
+      presetKeys: []
 --- !u!33 &1894131382573044219
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -154,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7309570baea41f69c117eef0b3b464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capturePoint: {fileID: 1894131382573044218}
   settings:
     teamId: 1
+    capturePoint: {fileID: 1894131382573044218}
     nextPoints: []
 --- !u!114 &2772073599641758993
 MonoBehaviour:
@@ -170,9 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7309570baea41f69c117eef0b3b464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capturePoint: {fileID: 1894131382573044218}
   settings:
     teamId: 2
+    capturePoint: {fileID: 0}
     nextPoints: []
 --- !u!1001 &856492189082644977
 PrefabInstance:

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Rulemaker
 {
+    /// <summary>
+    /// This displays a piece of data about a team from TeamData.dataCollection
+    /// </summary>
     public class TeamDataUI : MonoBehaviour
     {
         [System.Serializable]

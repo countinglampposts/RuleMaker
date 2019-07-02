@@ -8,15 +8,15 @@ namespace Rulemaker
     [System.Serializable]
     public class CapturePointData : ITeamOwned
     {
-        public int GetTeamId()
-        {
-            return teamId;
-        }
-
         public int teamId = CapturePoint.UnclaimedId;
         public List<int> lockedTeams;
 
         public DataCollection dataCollection = new DataCollection();
+
+        public int GetTeamId()
+        {
+            return teamId;
+        }
     }
 
     public class CapturePoint : MonoBehaviour
@@ -26,14 +26,24 @@ namespace Rulemaker
         [SerializeField]
         public CapturePointData capturePointData;
 
+        /// <summary>
+        /// The team id returned when the point has not been claimed by any team
+        /// </summary>
         public const int UnclaimedId = 0;
+        /// <summary>
+        /// The team id returned when the point is contested
+        /// </summary>
         public const int ContestedId = -1;
 
-        public void Start()
+        private void Start()
         {
             Refresh();
         }
 
+        /// <summary>
+        /// Sets what team has won the point
+        /// </summary>
+        /// <param name="teamId">The winning team's id. NOTE: 0 is contested</param>
         public void SetWinningTeamId(int teamId)
         {
             if (teamId == UnclaimedId || capturePointData.lockedTeams.Contains(teamId)) // Prevent the capture point from returning to an unclaimed state
@@ -44,6 +54,11 @@ namespace Rulemaker
             Refresh();
         }
 
+        /// <summary>
+        /// Sets what teams are locked from capturing this point
+        /// </summary>
+        /// <param name="teamId">Team id to be locked or unlocked</param>
+        /// <param name="isLocked">If set to <c>true</c> that team is locked.</param>
         public void SetLocked(int teamId, bool isLocked)
         {
             if (isLocked)

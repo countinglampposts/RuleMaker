@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Rulemaker.Example
 {
+    // This will capture a point after a majority of players spend a certain amount of time
     public class CaptureWithTime : MonoBehaviour
     {
         [SerializeField] RadiusParams radiusParams;
@@ -12,12 +13,12 @@ namespace Rulemaker.Example
 
         void Start()
         {
-            PlayerUtils.GetAllPlayers()
-                .PlayersWithinRadius(radiusParams)
-                .MajorityTeamId()
-                .OnDataChanged()
-                .OnTimer(timerParams)
-                .OnDo(capturePoint.SetWinningTeamId);
+            PlayerUtils.GetAllPlayers()                 // Gets all the players
+                .WithinRadius(radiusParams)             // Filters players based on radius
+                .MajorityTeamId()                       // Gets the majority team id. Note 0 means unclaimed, -1 means constested
+                .OnDataChanged()                        // Trigger when the majority changes
+                .OnTimer(timerParams)                   // Wait for the designated time
+                .OnDo(capturePoint.SetWinningTeamId);   // Set the winning team
         }
 
         private void OnDrawGizmos()

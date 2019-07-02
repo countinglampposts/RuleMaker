@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Rulemaker
 {
+    /// <summary>
+    /// Add this to any object that can be team owned
+    /// </summary>
     public interface ITeamOwned
     {
         int GetTeamId();
@@ -12,6 +15,9 @@ namespace Rulemaker
 
     public static class TeamUtils
     {
+        /// <summary>
+        /// Get all the teams
+        /// </summary>
         public static IAggregator<IEnumerable<TeamData>> GetAllTeams()
         {
             return new Aggregator<IEnumerable<TeamData>>
@@ -22,6 +28,9 @@ namespace Rulemaker
             };
         }
 
+        /// <summary>
+        /// Converts a team id to its TeamData object. If it is invalid, it will return null
+        /// </summary>
         public static IAggregator<TeamData> GetTeamFromId(this IAggregator<int> teamId)
         {
             return new Aggregator<TeamData>()
@@ -31,6 +40,10 @@ namespace Rulemaker
             };
         }
 
+        /// <summary>
+        /// Returns the majority team's id. 0 represents unclaimed and -1 represents contested
+        /// </summary>
+        /// <returns>The team identifier.</returns>
         public static IAggregator<int> MajorityTeamId<T>(this IAggregator<IEnumerable<T>> aggregator) where T : ITeamOwned
         {
             return new Aggregator<int>
@@ -39,10 +52,10 @@ namespace Rulemaker
                 {
                     var teamOwnedList = aggregator.GetData();
 
-                    if (!teamOwnedList.Any())
+                    if (!teamOwnedList.Any())                       // If there is nothing in the of team owned objects, then it is unclaimed
                         return CapturePoint.UnclaimedId;
 
-                    var teams = teamOwnedList
+                    var teams = teamOwnedList                       // Gets the list of teams
                         .Select(teamOwned => teamOwned.GetTeamId())
                         .Distinct();
 
@@ -51,7 +64,7 @@ namespace Rulemaker
 
                     foreach (var team in teams)
                     {
-                        if (team < 1) // Filter out contested and unclaimed team
+                        if (team < 1)                               // Filter out contested and unclaimed team
                             continue;
 
                         int teamCount = teamOwnedList
@@ -62,7 +75,7 @@ namespace Rulemaker
                             winningTeamId = team;
                             winningCount = teamCount;
                         }
-                        else if (teamCount == winningCount)
+                        else if (teamCount == winningCount)         // If there are more than one objects with a winning count, then it is contested
                         {
                             winningTeamId = CapturePoint.ContestedId;
                             winningCount = teamCount;
@@ -74,6 +87,10 @@ namespace Rulemaker
             };
         }
 
+        /// <summary>
+        /// Use this to get the team color using the team is
+        /// </summary>
+        /// <returns>The team color.</returns>
         public static Color GetTeamColor(int teamId)
         {
             var returned = Color.white;

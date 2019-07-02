@@ -13,6 +13,9 @@ namespace Rulemaker
         public DataCollection dataCollection = new DataCollection();
     }
 
+    /// <summary>
+    /// This is used to represent a team
+    /// </summary>
     public class Team : MonoBehaviour
     {
         [SerializeField] public TeamData teamData;

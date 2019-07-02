@@ -7,6 +7,9 @@ namespace Rulemaker
 {
     public static class CapturePointUtils
     {
+        /// <summary>
+        /// Gets all capture points. This list can be further filtered using Linq
+        /// </summary>
         public static IAggregator<IEnumerable<CapturePointData>> GetAllCapturePoints()
         {
             return new Aggregator<IEnumerable<CapturePointData>>
@@ -22,6 +25,9 @@ namespace Rulemaker
             };
         }
 
+        /// <summary>
+        /// Gets an aggregator for this point's current capture point data
+        /// </summary>
         public static IAggregator<CapturePointData> GetCurrentCapturePointData(this CapturePoint capturePoint)
         {
             return new Aggregator<CapturePointData>

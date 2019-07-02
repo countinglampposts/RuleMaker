@@ -19,6 +19,11 @@ namespace Rulemaker
             }
         }
 
+        /// <summary>
+        /// Triggers when the data being aggregated changes. Use select method to specify which data should be used for comparison.
+        /// </summary>
+        /// <param name="aggregator">The aggregator being monitored</param>
+        /// <param name="select">A function run on the object to be used for comparison</param>
         public static ITrigger<T> OnDataChanged<T, I>(this IAggregator<T> aggregator, Func<T, I> select)
         {
             var previousData = select(aggregator.GetData());
@@ -41,7 +46,10 @@ namespace Rulemaker
             return returned;
         }
 
-        // TODO: find a way to do a valueEquals check
+        /// <summary>
+        /// Triggers when the data being aggregated changes. 
+        /// </summary>
+        /// <param name="aggregator">The aggregator being monitored</param>
         public static ITrigger<T> OnDataChanged<T>(this IAggregator<T> aggregator)
         {
             var previousData = aggregator.GetData();
@@ -63,6 +71,10 @@ namespace Rulemaker
             return returned;
         }
 
+        /// <summary>
+        /// Starts a timer which will trigger after a certain amount of time
+        /// </summary>
+        /// <param name="timerParams">Timer parameters.</param>
         public static ITrigger<T> OnTimer<T>(this ITrigger<T> trigger, TimerParams timerParams)
         {
             var returned = new Trigger<T>();
@@ -91,6 +103,10 @@ namespace Rulemaker
             return returned;
         }
 
+        /// <summary>
+        /// Performs an action when the trigger is called
+        /// </summary>
+        /// <param name="action">The action performed on the trigger</param>
         public static ITrigger<T> OnDo<T>(this ITrigger<T> trigger, Action<T> action)
         {
             var returned = new Trigger<T>();
