@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     teamId: 2
-    capturePoint: {fileID: 0}
+    capturePoint: {fileID: 1894131382573044218}
     nextPoints: []
 --- !u!1001 &856492189082644977
 PrefabInstance:
