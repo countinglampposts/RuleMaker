@@ -11,11 +11,9 @@ namespace Rulemaker
         public int teamId;
 
         [HideInInspector]
-        public string id;
-        [HideInInspector]
         public Vector3 postion;
 
-        public Dictionary<string, object> data;
+        public DataCollection dataCollection = new DataCollection();
 
         public int GetTeamId()
         {
@@ -28,15 +26,9 @@ namespace Rulemaker
         [SerializeField] Renderer renderer;
         [SerializeField] public PlayerData playerData;
 
-        private void Awake()
-        {
-            playerData.id = gameObject.name;
-        }
-
         private void Start()
         {
-            var teamColor = TeamUtils.GetAllTeams().GetData()
-                .First(team => team.teamId == playerData.teamId).teamColor;
+            var teamColor = TeamUtils.GetTeamColor(playerData.teamId);
 
             renderer.material.color = teamColor;
         }

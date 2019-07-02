@@ -16,7 +16,7 @@ namespace Rulemaker
         public int teamId = CapturePoint.UnclaimedId;
         public List<int> lockedTeams;
 
-        public Dictionary<string, object> data;
+        public DataCollection dataCollection = new DataCollection();
     }
 
     public class CapturePoint : MonoBehaviour
