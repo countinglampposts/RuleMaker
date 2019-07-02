@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radiusParams:
-    radius: 10
+    radius: 5
     transform: {fileID: 1273271226348947693}
   timerParams:
     waitTime: 3
+    repeat: 0
   capturePoint: {fileID: 0}

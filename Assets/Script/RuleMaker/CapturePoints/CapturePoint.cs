@@ -14,6 +14,7 @@ namespace Rulemaker
         }
 
         public int teamId = CapturePoint.UnclaimedId;
+        public List<int> lockedTeams;
 
         public Dictionary<string, object> data;
     }
@@ -28,18 +29,54 @@ namespace Rulemaker
         public const int UnclaimedId = 0;
         public const int ContestedId = -1;
 
+        public void Start()
+        {
+            Refresh();
+        }
+
         public void SetWinningTeamId(int teamId)
         {
-            if (teamId == UnclaimedId) // Prevent the capture point from returning to an unclaimed state
+            if (teamId == UnclaimedId || capturePointData.lockedTeams.Contains(teamId)) // Prevent the capture point from returning to an unclaimed state
                 return;
 
+            capturePointData.teamId = teamId;
+
+            Refresh();
+        }
+
+        public void SetLocked(int teamId, bool isLocked)
+        {
+            if (isLocked)
+            {
+                if (!capturePointData.lockedTeams.Contains(teamId))
+                {
+                    capturePointData.lockedTeams.Add(teamId);
+                }
+            }
+            else
+            {
+                capturePointData.lockedTeams.Remove(teamId);
+            }
+
+
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            bool isLocked = capturePointData.lockedTeams.Count >= TeamUtils.GetAllTeams().GetData().Count();
+
+            Color color;
+            var teamId = capturePointData.teamId;
+
             if (teamId > 0)
-                renderer.material.color = TeamUtils.GetAllTeams().GetData()
+                color = TeamUtils.GetAllTeams().GetData()
                     .First(team => team.teamId == teamId).teamColor;
             else
-                renderer.material.color = Color.white;
+                color = Color.white;
 
-            capturePointData.teamId = teamId;
+            float colorMultiplier = (isLocked) ? .75f : 1f;
+            renderer.material.color = new Color(color.r * colorMultiplier, color.g * colorMultiplier, color.b * colorMultiplier);
         }
     }
 }

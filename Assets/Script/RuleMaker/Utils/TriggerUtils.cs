@@ -7,6 +7,8 @@ namespace Rulemaker
 {
     public static class TriggerUtils
     {
+        private static GameObject coroutineSurrogateGameObject;
+
         private class Disposable : IDisposable
         {
             public Action dispose;
@@ -101,13 +103,15 @@ namespace Rulemaker
 
         private static IDisposable StartCoroutine(IEnumerator coroutine)
         {
-            var coroutineSurrogate = (new GameObject("CoroutineSurrogate")).AddComponent<Stub>();
+            if (coroutineSurrogateGameObject == null) coroutineSurrogateGameObject = new GameObject("CoroutineSurrogate");
+
+            var coroutineSurrogate = coroutineSurrogateGameObject.AddComponent<Stub>();
 
             coroutineSurrogate.StartCoroutine(coroutine);
 
             return new Disposable
             {
-                dispose = () => GameObject.Destroy(coroutineSurrogate.gameObject)
+                dispose = () => GameObject.Destroy(coroutineSurrogate)
             };
         }
 

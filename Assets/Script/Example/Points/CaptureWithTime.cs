@@ -19,5 +19,12 @@ namespace Rulemaker.Example
                 .OnTimer(timerParams)
                 .OnDo(capturePoint.SetWinningTeamId);
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = TeamUtils.GetTeamColor(capturePoint.capturePointData.teamId);
+            Gizmos.DrawWireSphere(radiusParams.transform.position, radiusParams.radius);
+            Gizmos.color = Color.white;
+        }
     }
 }

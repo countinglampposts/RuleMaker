@@ -73,5 +73,17 @@ namespace Rulemaker
                 }
             };
         }
+
+        public static Color GetTeamColor(int teamId)
+        {
+            var returned = Color.white;
+
+            var teamData = TeamUtils.GetAllTeams().GetData()
+                .FirstOrDefault(team => team.teamId == teamId);
+            if (teamData != null)
+                returned = teamData.teamColor;
+
+            return returned;
+        }
     }
 }

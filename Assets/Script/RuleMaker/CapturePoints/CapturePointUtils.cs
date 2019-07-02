@@ -21,5 +21,13 @@ namespace Rulemaker
                 }
             };
         }
+
+        public static IAggregator<CapturePointData> GetCurrentCapturePointData(this CapturePoint capturePoint)
+        {
+            return new Aggregator<CapturePointData>
+            {
+                getData = () => capturePoint.capturePointData
+            };
+        }
     }
 }
